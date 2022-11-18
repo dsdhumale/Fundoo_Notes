@@ -20,17 +20,20 @@ export const newUserRegistration = async (body) => {
 
 //Login with email ID and password
 export const login = async (body) => {
-  const data = await User.find({ emailID: body.emailID });
-  if (data.length !== 0) {
-    const data = await User.find({ password: body.password });
-    if (data.length != 0) {
+  // To check email id is register or not in database
+  const data = await User.findOne({ emailID: body.emailID });
+  if (data !== null) {
+    // bcrypt compare function used for validating password
+    const result = await bcrypt.compare(body.password, data.password);
+    if (result) {
       return data;
     }
     else {
-      throw new Error("Entered Password is Invalid ");
+      throw new Error("Entered Password Invalid ");
     }
-  } else {
-    throw new Error("Entered EmailID is Invalid")
+  }
+  else {
+    throw new Error("Entered Email ID Invalid");
   }
 };
 
