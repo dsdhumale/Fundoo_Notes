@@ -23,4 +23,7 @@ router.delete('/:_id',userAuth,noteController.deleteNoteByID);
 //route to archive perticular or single note
 router.put('/:_id/archive',userAuth,noteController.isArchived);
 
+//route to trash perticular or single note
+router.put('/:_id/trash',userAuth,noteController.isTrash);
+
 export default router;

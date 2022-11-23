@@ -106,4 +106,18 @@ export const isArchived  = async (req, res, next) => {
       next(error);
     }
   };
+  //Controller to trash note
+
+  export const isTrash  = async (req, res, next) => {
+    try {
+      const data = await NoteService.isTrash(req.params._id,req.body.userID);
+      res.status(HttpStatus.CREATED).json({
+        code: HttpStatus.CREATED,
+        data: data,
+        message: 'Note move to Trash successfully'
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 

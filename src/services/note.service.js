@@ -53,4 +53,20 @@ export const isArchived = async (_id,userID) => {
     );
     return data;
   };
+
+  //Trash note by _id
+
+export const isTrash = async (_id,userID) => {
+    const data = await Note.findByIdAndUpdate(
+      {
+        _id,
+        userID
+      },
+      {isTrash: true},
+      {
+        new: true
+      }
+    );
+    return data;
+  };
   
