@@ -93,4 +93,17 @@ import * as NoteService from '../services/note.service';
       next(error);
     }
   };
+//Controller to archive note
+export const isArchived  = async (req, res, next) => {
+    try {
+      const data = await NoteService.isArchived(req.params._id,req.body.userID);
+      res.status(HttpStatus.CREATED).json({
+        code: HttpStatus.CREATED,
+        data: data,
+        message: 'Note Archived done successfully'
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 
