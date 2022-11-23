@@ -11,10 +11,13 @@ router.post('', noteValidator,userAuth,noteController.createNote);
 //route to get all notes
 router.get('',userAuth,noteController.getAllNotes);
 
-//route to get perticular or single note
+//route to get particular or single note
 router.get('/:_id',userAuth,noteController.getNoteByID);
 
-//route to update perticular or single note
+//route to update particular or single note
 router.put('/:_id',userAuth,noteController.updateNoteByID);
+
+//route to delete particular or single note
+router.delete('/:_id',userAuth,noteController.deleteNoteByID);
 
 export default router;

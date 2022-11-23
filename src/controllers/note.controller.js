@@ -75,3 +75,22 @@ import * as NoteService from '../services/note.service';
   };
   
 
+  /**
+   * Controller to delete note by _id
+   * @param  {object} req - request object
+   * @param {object} res - response object
+   * @param {Function} next
+   */
+   export const deleteNoteByID = async (req, res, next) => {
+    try {
+      const data = await NoteService.deleteNoteByID(req.params._id);
+      res.status(HttpStatus.CREATED).json({
+        code: HttpStatus.CREATED,
+        data: data,
+        message: 'Note deleted successfully'
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+
