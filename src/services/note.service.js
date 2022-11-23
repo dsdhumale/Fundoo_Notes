@@ -11,3 +11,9 @@ export const getAllNotes = async () => {
     const data = await Note.find();
     return data;
   };
+
+//get note by _id
+export const getNoteByID = async (_id) => {
+    const data = await Note.findById(_id);
+    return data;
+  };
