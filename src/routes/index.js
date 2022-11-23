@@ -2,6 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 import userRoute from './user.route';
+
 /**
  * Function contains Application routes
  *
