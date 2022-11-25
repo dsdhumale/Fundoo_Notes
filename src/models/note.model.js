@@ -5,9 +5,10 @@ const userSchema = new Schema(
         Title: { type: String,  required: true },
         Description: {type: String,  required: true},
         Colour: {type: String},
+        userID: {type:String},
         isArchived:{type: Boolean},
-        isTrash:{type: Boolean},
-        userID: {type:String}
+        isTrash:{type: Boolean}
+        
     },
     {
         timestamps: true

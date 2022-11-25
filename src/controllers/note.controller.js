@@ -27,7 +27,7 @@ import * as NoteService from '../services/note.service';
    */
   export const getAllNotes = async (req, res, next) => {
     try {
-      const data = await NoteService.getAllNotes();
+      const data = await NoteService.getAllNotes(req.body.userID);
       res.status(HttpStatus.CREATED).json({
         code: HttpStatus.CREATED,
         data: data,
@@ -45,7 +45,7 @@ import * as NoteService from '../services/note.service';
    */
     export const getNoteByID = async (req, res, next) => {
         try {
-          const data = await NoteService.getNoteByID(req.params._id);
+          const data = await NoteService.getNoteByID(req.params._id,req.body.userID);
           res.status(HttpStatus.CREATED).json({
             code: HttpStatus.CREATED,
             data: data,
@@ -63,7 +63,7 @@ import * as NoteService from '../services/note.service';
    */
   export const updateNoteByID = async (req, res, next) => {
     try {
-      const data = await NoteService.updateNoteByID(req.params._id, req.body);
+      const data = await NoteService.updateNoteByID(req.params._id,req.body.userID,req.body);
       res.status(HttpStatus.CREATED).json({
         code: HttpStatus.CREATED,
         data: data,
@@ -83,7 +83,7 @@ import * as NoteService from '../services/note.service';
    */
    export const deleteNoteByID = async (req, res, next) => {
     try {
-      const data = await NoteService.deleteNoteByID(req.params._id);
+      const data = await NoteService.deleteNoteByID(req.params._id,req.body.userID);
       res.status(HttpStatus.CREATED).json({
         code: HttpStatus.CREATED,
         data: data,
