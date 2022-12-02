@@ -33,7 +33,7 @@ export const sendMail = async (emailID) => {
             to: emailID,
             subject: 'Reset Password',
             text: 'Reset Password',
-            html: '<h1>To Reset Your Password <a href="http://localhost:1000/api/v1/users/resetpassword"> Click Here </a></h1><h1>'
+            html: '<h1>To Reset Your Password <a href="http://localhost:2450/api/v1/users/resetpassword"> Click Here </a></h1><h1>'
         };
 
         const result = await transport.sendMail(mailoption)
@@ -45,6 +45,3 @@ export const sendMail = async (emailID) => {
     }
 
 }
-// sendMail()
-//     .then((result) => console.log('Email sent...', result))
-//     .catch((error) => console.log(error.message));

@@ -6,8 +6,8 @@ const userSchema = new Schema(
         Description: {type: String,  required: true},
         Colour: {type: String},
         userID: {type:String},
-        isArchived:{type: Boolean},
-        isTrash:{type: Boolean}
+        isArchived:{type: Boolean,default: false},
+        isTrash:{type: Boolean,default: false}
         
     },
     {
