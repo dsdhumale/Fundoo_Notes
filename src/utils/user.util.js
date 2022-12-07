@@ -13,7 +13,39 @@ const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI)
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN })
 
-export const sendMail = async (emailID) => {
+//Function for sending mail for reset password
+export const sendMail = async (email) => {
+    try {
+        const accessToken = await oAuth2Client.getAccessToken();
+        const transport = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                type: 'OAuth2',
+                user: 'd.sdhumale@gmail.com',
+                clientId: CLIENT_ID,
+                clientSecret: CLIENT_SECRET,
+                refreshToken: REFRESH_TOKEN,
+                accessToken: accessToken
+            }
+        })
+        const mailoption = {
+            from: 'Devendra  <d.sdhumale@gmail.com>',
+            to: email,
+            subject: 'Reset Password',
+            text: 'Reset Password',
+            html: '<h1>To Reset Your Password <a href="http://localhost:2000/api/v1/users/resetpassword"> Click Here </a></h1><h1>'
+        };
+
+        const result = await transport.sendMail(mailoption)
+        return result
+    } catch (error) {
+        return error
+    }
+
+}
+
+//Function for send welcome mail after user registration
+export const Mail = async (email) => {
     try {
         const accessToken = await oAuth2Client.getAccessToken();
         const transport = nodemailer.createTransport({
@@ -30,18 +62,19 @@ export const sendMail = async (emailID) => {
 
         const mailoption = {
             from: 'Devendra  <d.sdhumale@gmail.com>',
-            to: emailID,
-            subject: 'Reset Password',
-            text: 'Reset Password',
-            html: '<h1>To Reset Your Password <a href="http://localhost:2450/api/v1/users/resetpassword"> Click Here </a></h1><h1>'
+            to: email,
+            subject: 'User registration done successfully',
+            text: 'User registration done successfully',
+            html: '<h1> WELCOME.....User registration done successfully <h1>'
         };
 
-        const result = await transport.sendMail(mailoption)
+        const result = await transport.sendMail(mailoption);
         return result
 
-        
     } catch (error) {
         return error
     }
 
 }
+
+
